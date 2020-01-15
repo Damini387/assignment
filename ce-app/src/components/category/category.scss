@@ -1,0 +1,35 @@
+$black: #000;
+$white: #fff;
+$blue: #00f;
+
+.button {
+    background: none;
+    padding: 0.5rem;
+    margin: 1rem;
+    border: 2px solid #000;
+    font-size: 12px;
+    text-transform: uppercase;
+    background-color: $black;
+    color: $white;
+    border-radius: 5px;
+    font-weight: 600;
+
+    &:hover {
+        color: $black;
+        background-color: $white;
+        cursor: pointer;
+    }
+
+    &.active {
+        color: $white;
+        border: none;
+        background-color: $blue;
+    }
+}
+
+.category {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+}
