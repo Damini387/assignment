@@ -36,13 +36,12 @@ class Category extends React.Component {
             const nameArr = [];
 
             Object.keys(data).forEach(key => {
-                console.log(JSON.stringify(data[key]));
-                if(data[key].hub === categoryName) {
+
+                if((data[key].hub !== 'general' && categoryName !== 'general') || 
+                    data[key].hub === categoryName) {
                     nameArr.push(data[key]);
                 }
-                if(data[key].hub !== 'general' && categoryName !== 'general') {
-                    nameArr.push(data[key]);
-                }
+
              });
 
              this.setState({
@@ -50,8 +49,7 @@ class Category extends React.Component {
              });
         })
         .catch(err => console.log(err));
-    }
-    
+    }    
     
     render() {
 
@@ -64,8 +62,8 @@ class Category extends React.Component {
                     <input type="button" className="button" value="others" onClick={ this.handleClick } />
                 </div>
                 <div className="category">
-                    { products && products.map(product =>
-                        <Products products={ product } /> )
+                    { products && products.map((product, index) =>
+                        <Products products={ product } key={ index } /> )
                     }
                 </div>
             </React.Fragment>

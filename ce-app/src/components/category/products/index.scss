@@ -1,53 +1,108 @@
-$margin: 20px;
+$space: 20px;
 
 .productTile {
     width: 100%;
     font-size: 13px;
-    margin: $margin;
+    margin: $space;
+    border: 2px solid #000;
+    padding: $space;
+    box-sizing: border-box;
+    box-shadow: 5px 10px rgba(0, 0, 0, 0.5);
 
     & div {
         line-height: 1.5;
-        // padding: 0 30px;
     }
+}
 
-    & .productImage,
-    & .icon {
-        width: 100px;
-        height: 100px;
-        margin: 0 auto;
+.productImage,
+.icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.name {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 0;
+}
+
+.author,
+.description {
+    display: flex;
+    align-items: center;
+    
+    & svg {
+        width: 12px;
+        height: 12px;
+        padding-right: 10px;
+    }
+}
+
+.key {
+    display: flex;
+
+    &::before {
+        content: 'key';
+        background: rgba(0,0,0,0.3);
+        color: #fff;
+        padding: 1px 5px;
+        font-size: 12px;
+        margin-right: 8px;
     }
 }
 
 .icon {
     transition: transform 2s ease-in-out;
+
+    &:hover {
+        transform: rotateY(360deg);
+    }
 }
 
-.icon:hover {
-    transform: rotateY(360deg);
-}
-
-.description {
+.description span {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    max-width: 70vw;
+}
+
+.icon:hover,
+.description:hover {
+    cursor: pointer;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .productTile {
-        width: calc(50% - #{$margin*2});
+        width: calc(50% - #{$space*2});
+    }
+    .description {
+        max-width: 100%;
+
+        & span {
+            max-width: 20vw;
+        }
     }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
     .productTile {
-        width: calc(33.33% - #{$margin*2});
+        width: calc(33.33% - #{$space*2});
     }
 }
 
 
 @media screen and (min-width: 1025px) {
     .productTile {
-        width: calc(25% - #{$margin*2});
+        width: calc(25% - #{$space*2});
         font-size: 12px;
+    }
+    .description {
+        max-width: 100%;
+
+        & span {
+            max-width: 230px;
+        }
     }
 }
