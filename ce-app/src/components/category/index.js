@@ -1,16 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 
-import Products from './products/products';
+import Products from './products/index';
 
-import './category.scss';
+import './index.scss';
 
 class Category extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            products: ''
+            products: '',
+            showLoader: false
         }
     }
 
@@ -23,6 +24,10 @@ class Category extends React.Component {
         }
 
         event.target.classList.add('active');
+
+        this.setState({
+            showLoader: true
+        })
 
         this.renderProducts(categoryName);
     }
@@ -45,7 +50,8 @@ class Category extends React.Component {
              });
 
              this.setState({
-                 products: nameArr
+                 products: nameArr,
+                 showLoader: false
              });
         })
         .catch(err => console.log(err));
@@ -53,7 +59,7 @@ class Category extends React.Component {
     
     render() {
 
-        const { products } = this.state;
+        const { products, showLoader } = this.state;
 
         return (
             <React.Fragment>
@@ -61,7 +67,17 @@ class Category extends React.Component {
                     <input type="button" className="button" value="general" onClick={ this.handleClick } />
                     <input type="button" className="button" value="others" onClick={ this.handleClick } />
                 </div>
+                <div className="content">Click on the buttons to get the data</div>
                 <div className="category">
+                    {
+                        products === "" &&
+                        <React.Fragment>
+                            <Products products={""} showLoader={ showLoader }/>
+                            <Products products={""} showLoader={ showLoader }/>
+                            <Products products={""} showLoader={ showLoader }/>
+                            <Products products={""} showLoader={ showLoader }/>
+                        </React.Fragment>
+                    }
                     { products && products.map((product, index) =>
                         <Products products={ product } key={ index } /> )
                     }
