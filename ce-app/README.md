@@ -12,6 +12,11 @@ Demo of the website: https://www.loom.com/share/8aa2f077aba3462ab1b71729491257f2
 > yarn build
 > yarn start 
 
+Note: To run on IE11/Edge, please follow below steps: 
+> npm i -g serve
+> serve -s build
+application will run at http://localhost:5000
+
 ### features implemented
 > Implemented responsive layout with 4-tiles on desktop, 2-tiles on mobile and tablet(portrait), 3-tiles on tablet(landscape).
 > Loaders are implemented when response is slow while fetching the products data.
